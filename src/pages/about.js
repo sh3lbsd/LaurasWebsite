@@ -1,39 +1,50 @@
 import Head from "next/head";
+import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 import API from "@/network/fetch";
 
 const query = `
-query home {
-  home {
-    data {
-      attributes {
-        summary {
-          title
+query about {
+  about {
+      data {
+        id
+        attributes {
           description
+          image {
+            data {
+              id
+              attributes {
+                name
+                width
+                height
+                url
+              }
+            }
+          }
         }
       }
     }
   }
-}
 `;
 
 export async function getServerSideProps(context) {
   const response = await API.query(query);
   const {
     data: {
-      home: {
+      about: {
         data: { attributes },
       },
     },
   } = response;
   return {
     props: {
+      // will be passed to the page component as props
       attributes,
     },
   };
 }
 
-export default function Home({ attributes }) {
+export default function About({ attributes }) {
   if (!attributes) return "Loading...";
   return (
     <>
@@ -49,8 +60,13 @@ export default function Home({ attributes }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <h1>{attributes.summary.title}</h1>
-        <p>{attributes.summary.description}</p>
+        <Image
+          src={`http://localhost:1337${attributes.image.data.attributes.url}`}
+          alt="image description"
+          width={attributes.image.data.attributes.width}
+          height={attributes.image.data.attributes.height}
+        />
+        <p>{attributes.description}</p>
       </main>
     </>
   );
