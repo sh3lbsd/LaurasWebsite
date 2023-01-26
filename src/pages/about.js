@@ -6,25 +6,26 @@ import Strapi from "@/network/strapi";
 const query = `
 query about {
   about {
-      data {
-        id
-        attributes {
-          description
-          image {
-            data {
-              id
-              attributes {
-                name
-                width
-                height
-                url
-              }
+    data {
+      id
+      attributes {
+        description
+        image {
+          data {
+            id
+            attributes {
+              name
+              width
+              height
+              url
+              alternativeText
             }
           }
         }
       }
     }
   }
+}
 `;
 
 export async function getServerSideProps(context) {
@@ -46,6 +47,11 @@ export async function getServerSideProps(context) {
 
 export default function About({ attributes }) {
   if (!attributes) return "Loading...";
+  const {
+    image: {
+      data: { attributes: image },
+    },
+  } = attributes;
   return (
     <>
       <Head>
@@ -61,10 +67,10 @@ export default function About({ attributes }) {
       </Head>
       <main className={styles.main}>
         <Image
-          src={`http://localhost:1337${attributes.image.data.attributes.url}`}
-          alt="image description"
-          width={attributes.image.data.attributes.width}
-          height={attributes.image.data.attributes.height}
+          src={`http://localhost:1337${image.url}`}
+          alt={image.alternativeText || "Image"}
+          width={image.width}
+          height={image.height}
         />
         <p>{attributes.description}</p>
       </main>
