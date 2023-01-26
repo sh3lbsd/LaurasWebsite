@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
-import API from "@/network/fetch";
+import Strapi from "@/network/fetch";
 
 const query = `
 query about {
@@ -28,7 +28,7 @@ query about {
 `;
 
 export async function getServerSideProps(context) {
-  const response = await API.query(query);
+  const response = await Strapi.query(query);
   const {
     data: {
       about: {

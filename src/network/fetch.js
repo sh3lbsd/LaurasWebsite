@@ -24,13 +24,8 @@ function query(query) {
   }).then((r) => r.json());
 }
 
-function fetchStrapiContentRest(name) {
-  return fetch(`${STRAPI_URL}/api/${name}`).then((r) => r.json());
-}
-
-const API = {
+const Strapi = {
   query,
-  fetchStrapiContentRest,
 };
 
-export default API;
+export default Strapi;
