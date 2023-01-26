@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
-import Strapi from "@/network/fetch";
+import Strapi from "@/network/strapi";
 
 const query = `
 query home {
