@@ -1,4 +1,12 @@
-const STRAPI_URL = "http://localhost:1337";
+const {
+  NEXT_PUBLIC_STRAPI_HOST,
+  NEXT_PUBLIC_STRAPI_PORT,
+  NEXT_PUBLIC_STRAPI_PROTOCOL,
+} = process.env;
+
+const PORT = NEXT_PUBLIC_STRAPI_PORT ? `:${NEXT_PUBLIC_STRAPI_PORT}` : "";
+
+const STRAPI_URL = `${NEXT_PUBLIC_STRAPI_PROTOCOL}://${NEXT_PUBLIC_STRAPI_HOST}${PORT}`;
 
 function query(query) {
   return fetch(`${STRAPI_URL}/graphql`, {
