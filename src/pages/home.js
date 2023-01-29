@@ -1,16 +1,27 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "@/styles/about.module.scss";
+import styles from "@/styles/home.module.scss";
 import Strapi from "@/network/strapi";
+import Card from "@/views/Card";
 
 const query = `
-query about {
-  about {
+query home {
+  home {
     data {
-      id
       attributes {
-        description
-        image {
+        summary {
+          title
+          description
+          expand {
+            url
+            label
+          }
+          style
+        }
+        upcoming {
+          title
+          description
+        }
+        carousel {
           data {
             id
             attributes {
@@ -32,26 +43,20 @@ export async function getServerSideProps(context) {
   const response = await Strapi.query(query);
   const {
     data: {
-      about: {
+      home: {
         data: { attributes },
       },
     },
   } = response;
   return {
     props: {
-      // will be passed to the page component as props
       attributes,
     },
   };
 }
 
-export default function About({ attributes }) {
+export default function Home({ attributes }) {
   if (!attributes) return "Loading...";
-  const {
-    image: {
-      data: { attributes: image },
-    },
-  } = attributes;
   return (
     <>
       <Head>
@@ -66,13 +71,8 @@ export default function About({ attributes }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Image
-          src={`http://localhost:1337${image.url}`}
-          alt={image.alternativeText || "Image"}
-          width={image.width}
-          height={image.height}
-        />
-        <p>{attributes.description}</p>
+        <Card {...attributes.summary} />
+        <Card {...attributes.upcoming} />
       </main>
     </>
   );
