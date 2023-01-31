@@ -1,38 +1,46 @@
 import Head from "next/head";
-import Image from "@/views/Image";
 import styles from "@/styles/about.module.scss";
 import Strapi from "@/network/strapi";
+import Article from "@/views/Article";
 
 const query = `
-query about {
-  about {
-    data {
-      id
-      attributes {
-        description
-        image {
-          data {
-            id
-            attributes {
-              name
-              width
-              height
+query publication {
+    publication {
+      data {
+        attributes {
+          article {
+            paragraphs {
+              title
+              text
+              image {
+                data {
+                  id
+                  attributes {
+                    name
+                    width
+                    height
+                    url
+                    alternativeText
+                  }
+                }
+              }
+            }
+            link {
               url
-              alternativeText
+              label
             }
           }
         }
       }
     }
   }
-}
 `;
 
 export async function getServerSideProps(context) {
   const response = await Strapi.query(query);
   const {
     data: {
-      about: {
+      publication: {
         data: { attributes },
       },
     },
@@ -45,7 +53,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function About({ attributes }) {
+export default function Publications({ attributes }) {
   if (!attributes) return "Loading...";
   return (
     <>
@@ -61,8 +69,7 @@ export default function About({ attributes }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Image {...attributes.image} />
-        <p>{attributes.description}</p>
+        <Article {...attributes.article[0]} />
       </main>
     </>
   );

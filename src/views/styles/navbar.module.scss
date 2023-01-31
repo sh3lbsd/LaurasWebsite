@@ -1,6 +1,8 @@
 .nav {
   padding: 16px;
   background-color: #658ab4;
+  position: sticky;
+  top: 0;
   ol {
     display: flex;
     list-style: none;

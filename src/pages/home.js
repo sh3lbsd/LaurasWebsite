@@ -8,14 +8,21 @@ query home {
   home {
     data {
       attributes {
+        quote {
+          date
+          messages {
+            text
+          }
+        }
         summary {
           title
           description
+          style
           expand {
             url
             label
+            style
           }
-          style
         }
         upcoming {
           title
@@ -30,6 +37,27 @@ query home {
               height
               url
               alternativeText
+            }
+          }
+        }
+        training {
+          title
+          description
+          style
+          links {
+            url
+            label
+          }
+          images {
+            data {
+              id
+              attributes {
+                name
+                width
+                height
+                url
+                alternativeText
+              }
             }
           }
         }
@@ -73,6 +101,11 @@ export default function Home({ attributes }) {
       <main className={styles.main}>
         <Card {...attributes.summary} />
         <Card {...attributes.upcoming} />
+        <Card {...attributes.training} />
+        <span className={styles.currentDay}>
+          <p> {new Date().toLocaleDateString()} </p>
+          <p> {attributes.quote.messages[0].text} </p>
+        </span>
       </main>
     </>
   );

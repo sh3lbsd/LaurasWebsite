@@ -11,6 +11,19 @@ export default function Navbar() {
         <li>
           <Link href="/about">About</Link>
         </li>
+        <li>
+          <Link href="/consultations">Consultations</Link>
+        </li>
+        <li>
+          <Link href="/publications">Publications</Link>
+        </li>
+        <li>
+          <Link href="/videos">Videos</Link>
+        </li><li>
+          <Link href="/testimonials">Testimonials</Link>
+        </li><li>
+          <Link href="/contact">Contact</Link>
+        </li>
       </ol>
     </nav>
   );
