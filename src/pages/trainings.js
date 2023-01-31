@@ -2,17 +2,16 @@ import Head from "next/head";
 import Image from "@/views/Image";
 import styles from "@/styles/about.module.scss";
 import Strapi from "@/network/strapi";
-import Card from "@/views/Card";
+import Article from "@/views/Article";
 
 const query = `
-query contact {
-  contact {
-    data {
-      attributes {
-        card {
+query training {
+    training {
+      data {
+        id
+        attributes {
           title
-          description
-          images {
+          image {
             data {
               id
               attributes {
@@ -24,18 +23,35 @@ query contact {
               }
             }
           }
+          article {
+            paragraphs {
+              title
+              text
+              image {
+                data {
+                  id
+                  attributes {
+                    name
+                    width
+                    height
+                    url
+                    alternativeText
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
   }
-}
 `;
 
 export async function getServerSideProps(context) {
   const response = await Strapi.query(query);
   const {
     data: {
-      contact: {
+      training: {
         data: { attributes },
       },
     },
@@ -64,7 +80,10 @@ export default function Contact({ attributes }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-      <Card {...attributes.card[0]} />
+        {" "}
+        <h1>{attributes.title}</h1>
+        <Image {...attributes.image} />
+        <Article {...attributes.article} />
       </main>
     </>
   );

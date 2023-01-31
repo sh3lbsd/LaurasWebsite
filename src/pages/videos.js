@@ -1,16 +1,36 @@
 import Head from "next/head";
 import Image from "@/views/Image";
-import styles from "@/styles/about.module.scss";
 import Strapi from "@/network/strapi";
+import Card from "@/views/Card";
+import styles from "@/views/styles/video.module.scss";
+
+
 
 const query = `
+query video {
+    video {
+      data {
+        attributes {
+          card {
+            title
+            description
+            links {
+              url
+              label
+              style
+            }
+          }
+        }
+      }
+    }
+  }
 `;
 
 export async function getServerSideProps(context) {
   const response = await Strapi.query(query);
   const {
     data: {
-      about: {
+      video: {
         data: { attributes },
       },
     },
@@ -39,7 +59,8 @@ export default function Videos({ attributes }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        
+      <Card {...attributes.card[0]}/>  
+      <Card {...attributes.card[1]}/>  
       </main>
     </>
   );

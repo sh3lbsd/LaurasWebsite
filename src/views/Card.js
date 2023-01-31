@@ -18,6 +18,7 @@ export default function Card(props) {
   return (
     <span {...rest} className={classes(styles[style], className)}>
       {title && <h1>{title}</h1>}
+
       {images && (
         <span className="images">
           {images.data.map((image) => (
@@ -37,6 +38,8 @@ export default function Card(props) {
           )}
         </p>
       )}
+
+      {/* cant get links to show as youtube videos */}
       {links && (
         <section>
           {links.map((link, index) => (

@@ -24,6 +24,13 @@ export default function Navbar() {
         </li><li>
           <Link href="/contact">Contact</Link>
         </li>
+        <li>
+          <Link href="/videos">Videos</Link>
+        </li><li>
+          <Link href="/trainings">Trainings</Link>
+        </li><li>
+          <Link href="/welcome">Welcome</Link>
+        </li>
       </ol>
     </nav>
   );

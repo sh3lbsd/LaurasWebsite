@@ -70,6 +70,7 @@ export default function Publications({ attributes }) {
       </Head>
       <main className={styles.main}>
         <Article {...attributes.article[0]} />
+        <Article {...attributes.article[1]} />
       </main>
     </>
   );
