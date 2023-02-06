@@ -4,8 +4,6 @@ import Strapi from "@/network/strapi";
 import Card from "@/views/Card";
 import styles from "@/views/styles/video.module.scss";
 
-
-
 const query = `
 query video {
     video {

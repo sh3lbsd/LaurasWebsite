@@ -1,11 +1,59 @@
+@mixin center {
+  display: flex;
+  align-items: center;
+}
+
 .nav {
-  padding: 16px;
-  background-color: #658ab4;
+  display: flex;
+  gap: 16px;
+
   position: sticky;
   top: 0;
+
+  border-top: 4px solid #ba9fb7;
+  background-color: #fff;
+
+  color: #ba9fb7;
+
   ol {
     display: flex;
     list-style: none;
     gap: 16px;
+    overflow: auto;
+    align-items: center;
   }
+
+  li {
+    transition: border-color 0.2s;
+    height: 100%;
+    @include center;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+  }
+
+  li:hover {
+    border-bottom: 6px solid #ba9fb7;
+    // color: blue;
+  }
+}
+
+.logo {
+  display: block;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: pink;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  margin-left: 16px;
+}
+
+.logo:hover {
+  transform: scale(2);
+}
+
+.hamburger {
+  color: pink;
+  cursor: pointer;
 }

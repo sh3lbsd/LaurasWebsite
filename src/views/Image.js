@@ -5,7 +5,7 @@ export default function Image(props) {
   const {
     data: { attributes: image },
     ...rest
-  } = props;
+  } = props.data ? props : { data: props };
   return (
     <NextImage
       {...rest}

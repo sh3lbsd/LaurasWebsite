@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "@/styles/home.module.scss";
 import Strapi from "@/network/strapi";
 import Card from "@/views/Card";
+import Carousel from "@/views/Carousel";
 
 const query = `
 query home {
@@ -99,6 +100,7 @@ export default function Home({ attributes }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <Carousel {...attributes.carousel} />
         <Card {...attributes.summary} />
         <Card {...attributes.upcoming} />
         <Card {...attributes.training} />
