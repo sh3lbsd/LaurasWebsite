@@ -1,10 +1,42 @@
+@use "../../styles/theme/colors";
+@use "../../styles/theme/_font";
+
 .Card,
 .card {
-  border-radius: 8px;
-  border: 1px solid;
-  padding: 8px;
+  background-color: colors.$card_bg_color;
+  transition: transform 0.3s, color 0.5s;
+  color: colors.$text_color_W;
+  font-family: font.$default_font_fam;
+  line-height: 30px;
+  align-content: space-around;
+  margin-bottom: 23px;
+
+
+  
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  h1,
+  p {
+    font: 25px;
+    padding: 23px;
+    &:where(:hover, :focus-visible) {
+      text-decoration: underline;
+      text-decoration-color: colors.$color_underline;
+    }
+   
+  }
 
   img {
+    // max-width: 100%;
+    // max-height: 100%;
+    // vertical-align: middle;
+    // display: inline-block;
     width: 100%;
     height: 200px;
   }
@@ -12,7 +44,8 @@
   section {
     display: flex;
     width: 100%;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 8px;
+    padding-bottom: 16px;
   }
 }

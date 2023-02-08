@@ -70,6 +70,7 @@ query home {
 
 export async function getServerSideProps(context) {
   const response = await Strapi.query(query);
+  const handleClick = () => setClamped(!clamped);
   const {
     data: {
       home: {
@@ -84,8 +85,33 @@ export async function getServerSideProps(context) {
   };
 }
 
+function CircleBackground({ children }) {
+  return (
+    <span className={styles.shapeContainer}>
+      <span className={styles.shape1}>
+        <div className={styles.container}>
+          <div className={styles.yellow}></div>
+          <div className={styles.orange}></div>
+          <div className={styles.blue}></div>
+          <div className={styles.pink}></div>
+        </div>
+
+        <div className={styles.container}>
+          <div className={styles.circle}></div>
+          <div className={styles.circle}></div>
+          <div className={styles.circle}></div>
+          <div className={styles.circle}></div>
+        </div>
+      </span>
+      <span className={styles.absoluteCenter}>{children}</span>
+    </span>
+  );
+}
+
 export default function Home({ attributes }) {
   if (!attributes) return "Loading...";
+  const handleClick = () => setClamped(!clamped);
+
   return (
     <>
       <Head>
@@ -101,12 +127,16 @@ export default function Home({ attributes }) {
       </Head>
       <main className={styles.main}>
         <Carousel {...attributes.carousel} />
-        <Card {...attributes.summary} />
-        <Card {...attributes.upcoming} />
-        <Card {...attributes.training} />
-        <span className={styles.currentDay}>
+
+        <CircleBackground>
           <p> {new Date().toLocaleDateString()} </p>
           <p> {attributes.quote.messages[0].text} </p>
+        </CircleBackground>
+
+        <span className={styles.row}>
+          <Card {...attributes.summary} className={styles.width} />
+          <Card {...attributes.upcoming} className={styles.width} />
+          <Card {...attributes.training} className={styles.width} />
         </span>
       </main>
     </>

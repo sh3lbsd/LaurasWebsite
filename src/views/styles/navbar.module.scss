@@ -1,7 +1,4 @@
-@mixin center {
-  display: flex;
-  align-items: center;
-}
+@use "../../styles/theme/mixins";
 
 .nav {
   display: flex;
@@ -26,7 +23,7 @@
   li {
     transition: border-color 0.2s;
     height: 100%;
-    @include center;
+    @include mixins.center;
     border-top: 6px solid transparent;
     border-bottom: 6px solid transparent;
   }

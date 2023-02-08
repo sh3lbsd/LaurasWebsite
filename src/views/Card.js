@@ -39,7 +39,7 @@ export default function Card(props) {
         </p>
       )}
 
-      {/* cant get links to show as youtube videos */}
+
       {links && (
         <section>
           {links.map((link, index) => (

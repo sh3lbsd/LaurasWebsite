@@ -6,25 +6,27 @@
   padding: 0;
 }
 
+html,
 body {
   font-family: "Karla", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100vw;
 }
 
 article h1 {
   margin: 1rem 0;
 }
 
-html,
 main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem;
   gap: 12px;
+  width: 100%;
 }
 
 a {

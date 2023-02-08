@@ -1,0 +1,25 @@
+@use "./colors";
+
+@mixin button {
+  background-color: colors.$text_color_W;
+  color: colors.$text_color_P;
+  padding: 12px;
+  border-radius: 25px;
+  border: 1px solid colors.$border_color_P;
+  transition: 0.3s;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-family: sans-serif;
+
+  &:hover {
+    background-color: colors.$text_color_P;
+    color: colors.$text_color_W;
+    border: 1px solid colors.$border_color_W;
+  }
+}
+
+@mixin center {
+  display: flex;
+  align-items: center;
+}
