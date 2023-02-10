@@ -24,6 +24,9 @@ export default function Carousel(props) {
     >
     
       <Image {...data.at(displayedImageIndex)} />
+      <span className={styles.content}>
+        hewwo
+      </span>
     </span>
   );
 }
