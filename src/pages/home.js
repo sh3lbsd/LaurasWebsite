@@ -29,15 +29,19 @@ query home {
           title
           description
         }
+      
         carousel {
-          data {
-            id
-            attributes {
-              name
-              width
-              height
-              url
-              alternativeText
+          style
+          images {
+            data {
+              id
+              attributes {
+                name
+                width
+                height
+                url
+                alternativeText
+              }
             }
           }
         }
@@ -65,8 +69,7 @@ query home {
       }
     }
   }
-}
-`;
+}`;
 
 export async function getServerSideProps(context) {
   const response = await Strapi.query(query);
@@ -137,6 +140,8 @@ export default function Home({ attributes }) {
           <Card {...attributes.summary} className={styles.width} />
           <Card {...attributes.upcoming} className={styles.width} />
           <Card {...attributes.training} className={styles.width} />
+          <Carousel {...attributes.carousel} style="left" />
+
         </span>
       </main>
     </>

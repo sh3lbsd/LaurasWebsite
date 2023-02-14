@@ -9,11 +9,11 @@ export default function Carousel(props) {
 
   if (!props) return null;
 
-  const { data, style = "carousel", className, ...rest } = props;
+  const { images, style = "right", className, ...rest } = props;
 
   const handleImageClick = () => {
     const nextIndex = displayedImageIndex + 1;
-    setDisplayedImageIndex(nextIndex % data.length);
+    setDisplayedImageIndex(nextIndex % images.data.length);
   };
 
   return (
@@ -22,11 +22,8 @@ export default function Carousel(props) {
       className={classes(styles[style], className)}
       onClick={handleImageClick}
     >
-    
-      <Image {...data.at(displayedImageIndex)} />
-      <span className={styles.content}>
-        hewwo
-      </span>
+      <Image {...images.data.at(displayedImageIndex)} />
+      <span className={styles.content}>hewwo</span>
     </span>
   );
 }
