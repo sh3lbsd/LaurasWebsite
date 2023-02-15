@@ -1,6 +1,22 @@
 @use "../../styles/theme/colors";
 @use "../../styles/theme/_font";
 
+@mixin content($top, $left, $bottom, $right) {
+  position: absolute;
+  color: colors.$text_color_W;
+  background-color: #b08ead;
+  opacity: 0.7;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  top: $top;
+  left: $left;
+  width: 40%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
 .left {
   position: relative;
   width: 100%;
@@ -8,17 +24,7 @@
   background: #d6bbd3;
   background-repeat: no-repeat;
   .content {
-    position: absolute;
-    color: colors.$text_color_W;
-    background-color: #b08ead;
-    // opacity: 0.7;
-    // -webkit-backdrop-filter: blur(8px);
-    // backdrop-filter: blur(8px);
-    top: 40%;
-    left: 10%;
-    width: 40%;
-    height: 30%;
-    padding: 40px;
+    @include content(55%, 10%, auto, auto);
   }
   img {
     position: absolute;
@@ -45,16 +51,6 @@
   }
 
   .content {
-    position: absolute;
-    color: colors.$text_color_W;
-    background-color: #b08ead;
-    // opacity: 0.7;
-    // -webkit-backdrop-filter: blur(8px);
-    // backdrop-filter: blur(8px);
-    top: 40%;
-    right: 10%;
-    width: 40%;
-    height: 30%;
-    padding: 40px;
+    @include content(40%, auto, auto, 10%);
   }
 }

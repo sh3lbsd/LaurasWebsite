@@ -9,21 +9,30 @@ export default function Carousel(props) {
 
   if (!props) return null;
 
-  const { images, style = "right", className, ...rest } = props;
+  const { images, links, style = "right", className, ...rest } = props;
 
   const handleImageClick = () => {
     const nextIndex = displayedImageIndex + 1;
     setDisplayedImageIndex(nextIndex % images.data.length);
   };
 
+  const displayedImage = images.data.at(displayedImageIndex);
+
+  const displayedLink = links?.at(displayedImageIndex);
+
+  console.log(displayedImage);
   return (
     <span
       {...rest}
       className={classes(styles[style], className)}
       onClick={handleImageClick}
     >
-      <Image {...images.data.at(displayedImageIndex)} />
-      <span className={styles.content}>hewwo</span>
+      <Image {...displayedImage} />
+      <span className={styles.content}>
+        {displayedImage.attributes.caption}
+        {displayedLink?.title}
+        {displayedLink && <Link {...displayedLink} />}
+      </span>
     </span>
   );
 }

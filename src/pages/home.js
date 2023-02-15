@@ -4,8 +4,7 @@ import Strapi from "@/network/strapi";
 import Card from "@/views/Card";
 import Carousel from "@/views/Carousel";
 
-const query = `
-query home {
+const query = `query home {
   home {
     data {
       attributes {
@@ -29,7 +28,7 @@ query home {
           title
           description
         }
-      
+
         carousel {
           style
           images {
@@ -43,6 +42,11 @@ query home {
                 alternativeText
               }
             }
+          }
+          links {
+            url
+            label
+            title
           }
         }
         training {
@@ -61,6 +65,22 @@ query home {
                 width
                 height
                 url
+                alternativeText
+              }
+            }
+          }
+        }
+        gallery {
+          style
+          images {
+            data {
+              id
+              attributes {
+                name
+                width
+                height
+                url
+                caption
                 alternativeText
               }
             }
@@ -140,8 +160,7 @@ export default function Home({ attributes }) {
           <Card {...attributes.summary} className={styles.width} />
           <Card {...attributes.upcoming} className={styles.width} />
           <Card {...attributes.training} className={styles.width} />
-          <Carousel {...attributes.carousel} style="left" />
-
+          <Carousel {...attributes.gallery} />
         </span>
       </main>
     </>
