@@ -13,10 +13,14 @@ export default function Card(props) {
     links,
     style = "Card",
     className,
+    animation,
     ...rest
   } = props;
   return (
-    <span {...rest} className={classes(styles[style], className)}>
+    <span
+      {...rest}
+      className={classes(styles[style], className, styles[animation])}
+    >
       {title && <h1>{title}</h1>}
 
       {images && (
@@ -38,7 +42,6 @@ export default function Card(props) {
           )}
         </p>
       )}
-
 
       {links && (
         <section>

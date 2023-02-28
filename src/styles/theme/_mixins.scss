@@ -23,3 +23,9 @@
   display: flex;
   align-items: center;
 }
+
+@mixin blur($color: colors.$card_bg_color, $blur: 4px, $opacity: 0.35) {
+  background-color: rgba($color, $opacity);
+  -webkit-backdrop-filter: blur($blur);
+  backdrop-filter: blur($blur);
+}

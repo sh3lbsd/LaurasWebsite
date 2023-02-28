@@ -1,5 +1,9 @@
+@use "../styles/theme/font";
+@use "../styles/theme/colors";
+@use "../styles/theme/mixins";
+
 .main {
-  padding:0;
+  padding: 0;
 }
 
 .row {
@@ -93,4 +97,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  .absoluteCenter {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-family: sans-serif;
+    color: colors.$text_color_P;
+    border-radius: 25px;
+    border: 1px solid colors.$border_color_P;
+    padding: 12px;
+
+    @include mixins.blur(white, 5px, 0.2);
+  }
 }

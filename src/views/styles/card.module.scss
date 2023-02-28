@@ -11,8 +11,6 @@
   align-content: space-around;
   margin-bottom: 23px;
 
-
-  
   &:hover {
     transform: scale(1.01);
   }
@@ -29,7 +27,6 @@
       text-decoration: underline;
       text-decoration-color: colors.$color_underline;
     }
-   
   }
 
   img {
@@ -47,5 +44,17 @@
     justify-content: center;
     gap: 8px;
     padding-bottom: 16px;
+  }
+}
+.fadeup {
+  animation: fadeup 1s linear forwards;
+}
+@keyframes fadeup {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
   }
 }

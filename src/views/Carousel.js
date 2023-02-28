@@ -22,12 +22,10 @@ export default function Carousel(props) {
 
   console.log(displayedImage);
   return (
-    <span
-      {...rest}
-      className={classes(styles[style], className)}
-      onClick={handleImageClick}
-    >
-      <Image {...displayedImage} />
+    <span {...rest} className={classes(styles[style], className)}>
+      <span onClick={handleImageClick}>
+        <Image {...displayedImage} />
+      </span>
       <span className={styles.content}>
         {displayedImage.attributes.caption}
         {displayedLink?.title}

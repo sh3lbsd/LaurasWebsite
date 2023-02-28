@@ -133,7 +133,7 @@ function CircleBackground({ children }) {
 
 export default function Home({ attributes }) {
   if (!attributes) return "Loading...";
-  const handleClick = () => setClamped(!clamped);
+
 
   return (
     <>
@@ -157,9 +157,9 @@ export default function Home({ attributes }) {
         </CircleBackground>
 
         <span className={styles.row}>
-          <Card {...attributes.summary} className={styles.width} />
-          <Card {...attributes.upcoming} className={styles.width} />
-          <Card {...attributes.training} className={styles.width} />
+          <Card {...attributes.summary} className={styles.width} animation="fadeup" />
+          <Card {...attributes.upcoming} className={styles.width} animation="fadeup" />
+          <Card {...attributes.training} className={styles.width} animation="fadeup"/>
           <Carousel {...attributes.gallery} />
         </span>
       </main>

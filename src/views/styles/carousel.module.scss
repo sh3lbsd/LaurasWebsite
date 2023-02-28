@@ -1,22 +1,17 @@
 @use "../../styles/theme/colors";
 @use "../../styles/theme/_font";
+@use "../../styles/theme/mixins";
 
-@mixin content($top, $left, $bottom, $right) {
+@mixin content {
   position: absolute;
   color: colors.$text_color_W;
-  background-color: #b08ead;
-  opacity: 0.7;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  top: $top;
-  left: $left;
-  bottom: $bottom;
-  right: $right;
   width: 40%;
   padding: 40px;
   display: flex;
   flex-direction: column;
   gap: 14px;
+
+  @include mixins.blur;
 }
 
 .left {
@@ -26,7 +21,9 @@
   background: #d6bbd3;
   background-repeat: no-repeat;
   .content {
-    @include content(55%, 10%, auto, auto);
+    @include content;
+    top: 55%;
+    left: 10%;
   }
   img {
     position: absolute;
@@ -53,6 +50,8 @@
   }
 
   .content {
-    @include content(40%, auto, auto, 10%);
+    @include content;
+    top: 40%;
+    right: 10%;
   }
 }
