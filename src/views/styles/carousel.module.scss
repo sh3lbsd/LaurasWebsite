@@ -6,52 +6,70 @@
   position: absolute;
   color: colors.$text_color_W;
   width: 40%;
-  padding: 40px;
+  padding: 60px 30px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
+  font-size: x-large;
+  font-weight: bolder;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
 
-  @include mixins.blur;
+  @include mixins.blur(colors.$card_bg_color, 5px, 0.7);
+}
+.left,
+.right {
+  min-height: 500px;
 }
 
+//photo gallery
 .left {
   position: relative;
   width: 100%;
   height: 500px;
-  background: #d6bbd3;
-  background-repeat: no-repeat;
+  background-image: linear-gradient(#c9adc6 50%, #d6bbd3  50%) ;
   .content {
     @include content;
-    top: 55%;
-    left: 10%;
+    top: 65%;
+    left: 5%;
+    border-radius: 25px;
   }
+  //needs messing with
   img {
+    max-width: 35%;
+    height: auto;
     position: absolute;
     top: 20%;
     right: 10%;
-    width: 50%;
-    height: 60%;
+    // width: 50%;
+    // height: 60%;
   }
 }
-
+//top 
 .right {
-  background-image: linear-gradient(#c9adc6 50%, #d6bbd3 50%);
   background-repeat: no-repeat;
   position: relative;
   width: 100%;
-  height: 500px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
   img {
-    position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 50%;
-    height: 60%;
+    position: fixed;
+    // top: 20%;
+    // left: 10%;
+    /* Full height */
+    height: calc(100% - 66px);
+    top: 66px;
+    width: 100%;
   }
 
   .content {
     @include content;
-    top: 40%;
+    top: 60%;
     right: 10%;
   }
 }

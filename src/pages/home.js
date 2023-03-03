@@ -3,6 +3,7 @@ import styles from "@/styles/home.module.scss";
 import Strapi from "@/network/strapi";
 import Card from "@/views/Card";
 import Carousel from "@/views/Carousel";
+import CircleBackground from "@/views/CurrentDay";
 
 const query = `query home {
   home {
@@ -108,32 +109,10 @@ export async function getServerSideProps(context) {
   };
 }
 
-function CircleBackground({ children }) {
-  return (
-    <span className={styles.shapeContainer}>
-      <span className={styles.shape1}>
-        <div className={styles.container}>
-          <div className={styles.yellow}></div>
-          <div className={styles.orange}></div>
-          <div className={styles.blue}></div>
-          <div className={styles.pink}></div>
-        </div>
 
-        <div className={styles.container}>
-          <div className={styles.circle}></div>
-          <div className={styles.circle}></div>
-          <div className={styles.circle}></div>
-          <div className={styles.circle}></div>
-        </div>
-      </span>
-      <span className={styles.absoluteCenter}>{children}</span>
-    </span>
-  );
-}
 
 export default function Home({ attributes }) {
   if (!attributes) return "Loading...";
-
 
   return (
     <>
@@ -152,16 +131,38 @@ export default function Home({ attributes }) {
         <Carousel {...attributes.carousel} />
 
         <CircleBackground>
-          <p> {new Date().toLocaleDateString()} </p>
+          <p>
+            {new Date().toLocaleDateString("en-us", {
+              weekday: "long",
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </p>
           <p> {attributes.quote.messages[0].text} </p>
         </CircleBackground>
 
         <span className={styles.row}>
-          <Card {...attributes.summary} className={styles.width} animation="fadeup" />
-          <Card {...attributes.upcoming} className={styles.width} animation="fadeup" />
-          <Card {...attributes.training} className={styles.width} animation="fadeup"/>
+          
+
+          <Card
+            {...attributes.summary}
+            className={styles.width}
+            animation="fadeup"
+          />
+          <Card
+            {...attributes.upcoming}
+            className={styles.width}
+            animation="fadeup"
+          />
+          <Card
+            {...attributes.training}
+            className={styles.width}
+            animation="fadeup"
+          />
+          </span>
           <Carousel {...attributes.gallery} />
-        </span>
+
       </main>
     </>
   );

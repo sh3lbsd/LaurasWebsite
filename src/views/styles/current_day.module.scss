@@ -1,25 +1,6 @@
-@use "../styles/theme/font";
-@use "../styles/theme/colors";
-@use "../styles/theme/mixins";
-
-.main {
-  padding: 0;
-  background-image: linear-gradient(#d6bbd3, white, #c9adc6);
-}
-
-.row {
-  display: flex;
-  background-image: radial-gradient(white 50%,#d8c7d6, #b99bb6 );
-
-  align-content: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-  padding-top: 75px;
-  padding-bottom: 52px;
-  gap: 25px;
-  z-index: 1;
-}
+@use "../../styles/theme/font";
+@use "../../styles/theme/colors";
+@use "../../styles/theme/mixins";
 
 .width {
   width: 400px;
@@ -98,7 +79,11 @@
 }
 
 .shapeContainer {
-  p {
+
+    width: 580px;
+    height: 580px;
+    border-radius: 100%;
+    background-image: radial-gradient(circle, white, 28%,#b99bb6 30%, transparent 35%);  p {
     text-align: center;
   }
   position: relative;
@@ -111,11 +96,11 @@
     text-transform: uppercase;
     font-size: 14px;
     font-family: sans-serif;
-    color: colors.$text_color_P;
+    color: #5f4e5d;
     border-radius: 35px;
     border: 1px solid colors.$border_color_P;
     padding: 12px;
 
-    @include mixins.blur(white, 5px, 0.2);
+    @include mixins.blur(white, 5px, 0.6);
   }
 }
